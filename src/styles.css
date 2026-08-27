@@ -149,19 +149,33 @@ ol {
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 9px;
   width: fit-content;
   font-size: 18px;
   font-weight: 680;
   letter-spacing: 0;
 }
 
-.brand-signal {
-  width: 9px;
-  height: 9px;
-  border: 2px solid var(--green);
-  border-radius: 50%;
-  box-shadow: 0 0 0 4px rgb(16 163 127 / 14%);
+.brand-mark {
+  width: 27px;
+  height: 27px;
+  flex: 0 0 27px;
+  overflow: visible;
+}
+
+.brand-mark path {
+  fill: none;
+  stroke: var(--green);
+  stroke-linecap: round;
+  stroke-width: 1.8;
+}
+
+.brand-mark__trigger {
+  fill: var(--green);
+}
+
+.brand-mark__step {
+  fill: var(--text);
 }
 
 .brand-word {
