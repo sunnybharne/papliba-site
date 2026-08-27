@@ -1,13 +1,13 @@
 {
-  "name": "papliba",
-  "version": "0.8.0-alpha.1",
+  "name": "papliba-site",
+  "version": "0.1.0",
   "private": true,
-  "description": "A local-first control surface for the Pi coding agent.",
+  "description": "The public product and documentation website for Papliba.",
   "type": "module",
   "homepage": "https://papliba.com/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sunnybharne/papliba.git"
+    "url": "git+https://github.com/sunnybharne/papliba-site.git"
   },
   "license": "Apache-2.0",
   "engines": {
@@ -30,6 +30,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "lucide-react": "^1.34.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-router-dom": "^7.18.2"
@@ -38,8 +39,8 @@
     "@commitlint/cli": "^21.2.2",
     "@commitlint/config-conventional": "^21.2.2",
     "@eslint/js": "^10.0.1",
-    "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.5",
     "@types/node": "^24.13.3",

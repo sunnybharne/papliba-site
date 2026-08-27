@@ -7,7 +7,7 @@ const packageJson = JSON.parse(
   readFileSync(fileURLToPath(new URL('./package.json', import.meta.url)), 'utf8'),
 ) as { version: string };
 
-const basePath = process.env.VITE_BASE_PATH ?? '/papliba/';
+const basePath = process.env.VITE_BASE_PATH ?? '/';
 
 export default defineConfig({
   base: basePath,

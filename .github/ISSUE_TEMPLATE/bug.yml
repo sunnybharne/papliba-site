@@ -6,13 +6,13 @@ body:
   - type: markdown
     attributes:
       value: |
-        Papliba is currently an architecture preview. Please report behavior that exists in the current product site or repository tooling, not a missing planned feature.
+        This repository contains the public Papliba website. Application bugs belong in sunnybharne/papliba.
 
   - type: input
     id: version
     attributes:
       label: Version or commit
-      placeholder: 0.8.0-alpha.1 or commit SHA
+      placeholder: Site URL or commit SHA
     validations:
       required: true
 

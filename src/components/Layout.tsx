@@ -1,8 +1,8 @@
 import { useEffect, useState, type MouseEvent } from 'react';
+import { Code2, ExternalLink, Menu, X } from 'lucide-react';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { navigation, product } from '../content/product';
 import { Brand } from './Brand';
-import { CloseIcon, ExternalIcon, GithubIcon, MenuIcon } from './Icons';
 
 function ScrollToTop() {
   const location = useLocation();
@@ -44,8 +44,8 @@ export function Layout() {
             ))}
           </nav>
           <a className="github-button" href={product.repository} target="_blank" rel="noreferrer">
-            <GithubIcon />
-            <span>GitHub</span>
+            <Code2 aria-hidden="true" />
+            <span>Source</span>
           </a>
           <button
             className="menu-button"
@@ -54,7 +54,7 @@ export function Layout() {
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((open) => !open)}
           >
-            {menuOpen ? <CloseIcon /> : <MenuIcon />}
+            {menuOpen ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
           </button>
         </div>
         {menuOpen ? (
@@ -71,7 +71,7 @@ export function Layout() {
                 </NavLink>
               ))}
               <a href={product.repository} target="_blank" rel="noreferrer">
-                GitHub <ExternalIcon />
+                Source <ExternalLink aria-hidden="true" />
               </a>
             </div>
           </nav>
@@ -84,18 +84,18 @@ export function Layout() {
         <div className="shell site-footer__inner">
           <div>
             <Brand />
-            <p>A community-built interface for Pi. Currently an architecture preview.</p>
+            <p>A local-first visual workflow builder.</p>
           </div>
           <div className="footer-links">
             <NavLink to="/docs">Documentation</NavLink>
-            <NavLink to="/architecture">Architecture</NavLink>
+            <NavLink to="/product">Product</NavLink>
             <a href={`${product.repository}/blob/main/LICENSE`} target="_blank" rel="noreferrer">
               Apache 2.0
             </a>
           </div>
           <div className="version-block">
             <span className="status-dot" />
-            <span>v{product.version}</span>
+            <span>App v{product.version}</span>
           </div>
         </div>
       </footer>

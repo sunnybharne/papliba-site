@@ -1,19 +1,18 @@
-# Security policy
+# Security Policy
 
-## Supported versions
+This repository contains Papliba's public static website. Report application security issues in the
+[Papliba application repository](https://github.com/sunnybharne/papliba/security/advisories/new).
 
-Papliba is currently an architecture preview and does not run an agent or local companion. Security fixes apply to the latest code on `main`.
+## Supported Versions
 
-## Reporting a vulnerability
+Only the latest production deployment from `main` is currently supported.
 
-Do not open a public issue for a suspected vulnerability. Use GitHub's **Security → Report a vulnerability** flow for the repository:
+## Reporting A Vulnerability
 
-<https://github.com/sunnybharne/papliba/security/advisories/new>
+Use GitHub's private vulnerability reporting. Do not include exploit details in a public issue.
 
-Include the affected commit or version, impact, reproduction steps, and any suggested mitigation. Avoid including real credentials, private workspace files, or session transcripts.
+## Security Expectations
 
-The maintainers aim to acknowledge a complete report within seven days. Response timing is a target, not a service-level agreement.
-
-## Future local companion
-
-The proposed companion will be security-sensitive because it launches Pi and mediates workspace access. Its implementation must receive explicit review for loopback binding, origin validation, browser authentication, path canonicalization, process isolation, message limits, secret redaction, and safe shutdown before a user-facing alpha is published.
+- Do not commit credentials, deployment tokens, personal data, or private product content.
+- Keep the Azure deployment token in GitHub Actions secrets.
+- Treat dependency updates and third-party workflow actions as supply-chain changes.

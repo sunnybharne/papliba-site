@@ -1,10 +1,12 @@
-# Contributing to Papliba
+# Contributing to the Papliba site
 
-Papliba is in architecture preview. Contributions that clarify the product boundary, test assumptions, improve accessibility, or prepare the connection spike are welcome.
+This repository contains the public product and documentation site. Application changes belong in
+[`sunnybharne/papliba`](https://github.com/sunnybharne/papliba).
 
 ## Before opening code
 
-For a substantial feature or architecture change, open an issue first. This avoids implementing planned behavior before the boundary and acceptance criteria are agreed.
+For a substantial information-architecture or visual change, open an issue first so the product
+story and acceptance criteria are clear.
 
 ## Development setup
 
@@ -17,8 +19,8 @@ npm run dev
 ## Branches and commits
 
 - Create a focused branch from `main`.
-- Use [Conventional Commits](https://www.conventionalcommits.org/), for example `feat: add connection status card` or `docs: clarify rpc ownership`.
-- Keep claims honest: use **available**, **proposed**, or **planned** consistently.
+- Use [Conventional Commits](https://www.conventionalcommits.org/), for example `feat: add product capability section` or `docs: clarify local setup`.
+- Keep claims honest: use **available**, **in progress**, or **planned** consistently.
 - Do not mix unrelated formatting or refactors into a feature.
 
 Husky checks staged files before commit and validates the commit message. CI remains authoritative.
@@ -38,13 +40,9 @@ A pull request should explain:
 1. the user or contributor problem;
 2. what changed and what did not;
 3. how the change was verified;
-4. whether documentation, roadmap, or architecture claims changed.
+4. whether product, documentation, or roadmap claims changed.
 
-Screenshots are helpful for visible changes. Never include credentials, local workspace content, or private Pi session data.
-
-## Architecture decisions
-
-Changes to a trust boundary, protocol, runtime, or security model require an ADR under `docs/decisions/`. Copy ADR-001's structure and describe the consequences and validation plan.
+Screenshots are helpful for visible changes. Never include credentials or private local workspace content.
 
 ## Conduct and security
 

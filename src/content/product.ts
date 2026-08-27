@@ -1,16 +1,16 @@
 export const product = {
   name: 'Papliba',
-  version: __APP_VERSION__,
-  phase: 'Architecture preview',
+  version: '0.7.0',
+  siteVersion: __APP_VERSION__,
+  phase: 'Local alpha',
   repository: 'https://github.com/sunnybharne/papliba',
+  siteRepository: 'https://github.com/sunnybharne/papliba-site',
   site: 'https://papliba.com/',
-  piDocs: 'https://pi.dev/docs/latest/',
-  piRpcDocs: 'https://pi.dev/docs/latest/rpc/',
 } as const;
 
 export const navigation = [
   { label: 'Home', to: '/' },
-  { label: 'Architecture', to: '/architecture' },
+  { label: 'Product', to: '/product' },
   { label: 'Docs', to: '/docs' },
   { label: 'Roadmap', to: '/roadmap' },
 ] as const;

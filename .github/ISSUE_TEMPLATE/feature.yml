@@ -24,10 +24,10 @@ body:
     attributes:
       label: Area
       options:
-        - Product site
+        - Product story
+        - Product site UI
         - Documentation
-        - Proposed local companion
-        - Proposed agent interface
+        - Roadmap
         - Contributor workflow
         - Other
     validations:

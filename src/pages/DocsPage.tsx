@@ -1,28 +1,25 @@
+import { ExternalLink } from 'lucide-react';
 import { useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { CopyCode } from '../components/CopyCode';
-import { ExternalIcon } from '../components/Icons';
 import { product } from '../content/product';
 
-const localSetup = `git clone https://github.com/sunnybharne/papliba.git
+const install = `git clone https://github.com/sunnybharne/papliba.git
 cd papliba
-nvm use
-npm ci
-npm run dev`;
+npm install
+npm install --prefix src/Papliba.Web`;
 
-const qualityChecks = `npm run format:check
-npm run lint
-npm run typecheck
-npm run test
-npm run build`;
+const startRunner = `npm run start:runner`;
+const startWeb = `npm run start:web`;
+const qualityChecks = `npm run validate`;
 
 const docNav = [
   { label: 'Start here', id: 'start-here' },
-  { label: 'Project status', id: 'project-status' },
-  { label: 'Technology', id: 'technology' },
-  { label: 'Local development', id: 'local-development' },
-  { label: 'Quality workflow', id: 'quality-workflow' },
-  { label: 'Source documents', id: 'source-documents' },
+  { label: 'Current status', id: 'current-status' },
+  { label: 'Architecture', id: 'architecture' },
+  { label: 'Run locally', id: 'run-locally' },
+  { label: 'Workspace data', id: 'workspace-data' },
+  { label: 'Validation', id: 'validation' },
 ] as const;
 
 export function DocsPage() {
@@ -36,197 +33,174 @@ export function DocsPage() {
 
   return (
     <>
-      <section className="docs-hero section-grid-bg">
-        <div className="shell docs-hero__inner">
+      <section className="page-intro docs-intro">
+        <div className="shell page-intro__inner docs-intro__inner">
           <div>
-            <p className="eyebrow">DOCUMENTATION</p>
-            <h1>Start with what is true today.</h1>
+            <p className="eyebrow eyebrow--light">DOCUMENTATION</p>
+            <h1>Run Papliba where the work lives.</h1>
             <p>
-              Papliba is in architecture preview. These docs separate the current website from the
-              proposed local application so contributors can make decisions from the same facts.
+              The current alpha is a local application: a Next.js interface, an ASP.NET Core runner,
+              and a revisioned SQLite workspace.
             </p>
           </div>
-          <div className="docs-version-card">
-            <span>CURRENT VERSION</span>
+          <div className="version-readout">
+            <span>APPLICATION</span>
             <strong>v{product.version}</strong>
-            <p>{product.phase}</p>
+            <small>{product.phase}</small>
           </div>
         </div>
       </section>
 
-      <div className="shell docs-layout">
-        <aside className="docs-sidebar">
-          <span>ON THIS PAGE</span>
-          <nav aria-label="Documentation sections">
-            {docNav.map((item) => (
-              <Link key={item.id} to={`/docs?section=${item.id}`}>
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-          <a
-            className="docs-sidebar__github"
-            href={product.repository}
-            target="_blank"
-            rel="noreferrer"
-          >
-            View source <ExternalIcon />
-          </a>
-        </aside>
+      <div className="docs-band">
+        <div className="shell docs-layout">
+          <aside className="docs-sidebar">
+            <span>ON THIS PAGE</span>
+            <nav aria-label="Documentation sections">
+              {docNav.map((item) => (
+                <Link key={item.id} to={`/docs?section=${item.id}`}>
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
+            <a href={product.repository} target="_blank" rel="noreferrer">
+              Application source <ExternalLink aria-hidden="true" />
+            </a>
+          </aside>
 
-        <article className="docs-content">
-          <section id="start-here">
-            <p className="docs-overline">OVERVIEW</p>
-            <h2>Start here</h2>
-            <p className="docs-lead">
-              Papliba is an open-source product direction for a visual Pi interface. The goal is to
-              make agent activity easier to follow and review while preserving Pi as the underlying
-              coding-agent runtime.
-            </p>
-            <div className="docs-note docs-note--lime">
-              <strong>What you can use now</strong>
-              <p>
-                The product website, architecture decision, roadmap, and contributor foundation.
-                There is no downloadable Papliba agent application in this release.
+          <article className="docs-content">
+            <section id="start-here">
+              <p className="docs-overline">OVERVIEW</p>
+              <h2>Start here</h2>
+              <p className="docs-lead">
+                Papliba is a local-first visual workflow builder. Projects contain workflows;
+                workflows contain triggers and connected steps; Python steps map to ordinary folders
+                on disk.
               </p>
-            </div>
-          </section>
+              <div className="docs-note docs-note--green">
+                <strong>No hosted application account is required</strong>
+                <p>
+                  The public website explains the product. The application and its runner execute
+                  locally.
+                </p>
+              </div>
+            </section>
 
-          <section id="project-status">
-            <p className="docs-overline">STATUS</p>
-            <h2>Project status</h2>
-            <div className="status-matrix">
-              <div>
-                <span className="matrix-state matrix-state--done">AVAILABLE</span>
-                <strong>Product and documentation site</strong>
-                <p>React/Vite static site deployed to GitHub Pages.</p>
+            <section id="current-status">
+              <p className="docs-overline">STATUS</p>
+              <h2>Current status</h2>
+              <div className="status-matrix">
+                <div>
+                  <span className="matrix-state matrix-state--available">AVAILABLE</span>
+                  <strong>Visual workflow editing</strong>
+                  <p>
+                    Projects, workflows, triggers, workers, connections, selection, copy/paste, and
+                    undo.
+                  </p>
+                </div>
+                <div>
+                  <span className="matrix-state matrix-state--available">AVAILABLE</span>
+                  <strong>Durable local workspace</strong>
+                  <p>
+                    ASP.NET Core APIs, SQLite persistence, Python folders, file previews, and run
+                    logs.
+                  </p>
+                </div>
+                <div>
+                  <span className="matrix-state matrix-state--in-progress">IN PROGRESS</span>
+                  <strong>Production execution</strong>
+                  <p>
+                    The graph runner currently demonstrates execution state with simulated step
+                    output.
+                  </p>
+                </div>
               </div>
-              <div>
-                <span className="matrix-state matrix-state--decision">PROPOSED</span>
-                <strong>Local companion architecture</strong>
-                <p>ASP.NET Core bridge between the browser and Pi RPC.</p>
-              </div>
-              <div>
-                <span className="matrix-state matrix-state--planned">PLANNED</span>
-                <strong>Interactive agent workspace</strong>
-                <p>Sessions, streaming activity, changes, and approval surfaces.</p>
-              </div>
-            </div>
-          </section>
+            </section>
 
-          <section id="technology">
-            <p className="docs-overline">TECHNOLOGY</p>
-            <h2>Technology choices</h2>
-            <p>
-              The current repository is intentionally one React application rather than a Next.js
-              project. It produces static assets that GitHub Pages can host directly.
-            </p>
-            <div className="technology-grid">
-              <div>
-                <span>NOW</span>
-                <h3>Product site</h3>
-                <ul>
-                  <li>React + TypeScript</li>
-                  <li>Vite build system</li>
-                  <li>Hash-based routing</li>
-                  <li>GitHub Pages hosting</li>
-                </ul>
-              </div>
-              <div>
-                <span>PROPOSED</span>
-                <h3>Local application</h3>
-                <ul>
-                  <li>Same React client</li>
-                  <li>ASP.NET Core companion</li>
-                  <li>SignalR or WebSocket transport</li>
-                  <li>Pi RPC child process</li>
-                </ul>
-              </div>
-            </div>
-            <div className="docs-note">
-              <strong>Why the companion is necessary</strong>
+            <section id="architecture">
+              <p className="docs-overline">ARCHITECTURE</p>
+              <h2>Two local processes, one workspace</h2>
               <p>
-                A website hosted on GitHub Pages cannot spawn a local process or safely access a
-                workspace. The future companion provides that trusted local boundary.
+                The browser interface owns presentation and canvas interaction. The runner owns
+                local persistence, file operations, Codex authentication checks, and OS-level open
+                actions.
               </p>
-            </div>
-          </section>
+              <div className="architecture-rows">
+                <div>
+                  <span>3000</span>
+                  <strong>Next.js + React</strong>
+                  <p>Local browser interface and workflow editor.</p>
+                </div>
+                <div>
+                  <span>5127</span>
+                  <strong>ASP.NET Core</strong>
+                  <p>Loopback runner and workspace API.</p>
+                </div>
+                <div>
+                  <span>DB</span>
+                  <strong>SQLite</strong>
+                  <p>Revisioned project and workflow state.</p>
+                </div>
+              </div>
+            </section>
 
-          <section id="local-development">
-            <p className="docs-overline">DEVELOPMENT</p>
-            <h2>Run the site locally</h2>
-            <p>
-              Use Node 24 LTS. The repository pins the expected runtime in <code>.nvmrc</code> and
-              commits the npm lockfile for reproducible installs.
-            </p>
-            <CopyCode>{localSetup}</CopyCode>
-            <p>
-              Vite prints the local URL. Changes under <code>src/</code> update immediately during
-              development.
-            </p>
-          </section>
+            <section id="run-locally">
+              <p className="docs-overline">LOCAL SETUP</p>
+              <h2>Run locally</h2>
+              <p>
+                Install Node.js, npm, and the .NET 10 SDK, then install both JavaScript workspaces:
+              </p>
+              <CopyCode label="Install">{install}</CopyCode>
+              <p>Start the runner in one terminal:</p>
+              <CopyCode label="Terminal 1">{startRunner}</CopyCode>
+              <p>Start the web interface in another terminal:</p>
+              <CopyCode label="Terminal 2">{startWeb}</CopyCode>
+              <p>
+                Open <code>http://127.0.0.1:3000/app</code>. The runner listens only on{' '}
+                <code>http://127.0.0.1:5127</code>.
+              </p>
+            </section>
 
-          <section id="quality-workflow">
-            <p className="docs-overline">QUALITY</p>
-            <h2>Quality workflow</h2>
-            <p>
-              Every pull request runs formatting, linting, type checking, tests, and the production
-              build. Run them together with <code>npm run validate</code>, or separately:
-            </p>
-            <CopyCode label="Checks">{qualityChecks}</CopyCode>
-            <p>
-              Husky runs lint-staged before a commit and Commitlint checks Conventional Commit
-              messages. These local hooks are a fast feedback layer; CI remains the source of truth.
-            </p>
-          </section>
+            <section id="workspace-data">
+              <p className="docs-overline">DATA</p>
+              <h2>Workspace data</h2>
+              <p>
+                Papliba stores its workspace in the operating system's local application-data
+                directory. Python steps receive their own project and workflow folders with a{' '}
+                <code>main.py</code>
+                entry file.
+              </p>
+              <div className="docs-note">
+                <strong>Custom data directory</strong>
+                <p>
+                  Set <code>PAPLIBA_DATA_DIRECTORY</code> before starting the runner when
+                  development or testing needs an isolated workspace.
+                </p>
+              </div>
+            </section>
 
-          <section id="source-documents">
-            <p className="docs-overline">DEEPER READING</p>
-            <h2>Source documents</h2>
-            <div className="source-link-list">
+            <section id="validation">
+              <p className="docs-overline">QUALITY</p>
+              <h2>Validate the application</h2>
+              <p>
+                The repository validates the architecture diagram, .NET runner, and production web
+                build together:
+              </p>
+              <CopyCode label="Checks">{qualityChecks}</CopyCode>
+              <p>
+                Release history and implementation details are maintained in the application
+                repository's changelog and release notes.
+              </p>
               <a
-                href={`${product.repository}/blob/main/docs/PRODUCT.md`}
+                className="docs-source-link"
+                href={`${product.repository}/blob/main/CHANGELOG.md`}
                 target="_blank"
                 rel="noreferrer"
               >
-                <span>
-                  <strong>Product brief</strong>
-                  <small>Audience, problem, principles, and scope</small>
-                </span>
-                <ExternalIcon />
+                Read the application changelog <ExternalLink aria-hidden="true" />
               </a>
-              <a
-                href={`${product.repository}/blob/main/docs/ARCHITECTURE.md`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <span>
-                  <strong>Architecture decision</strong>
-                  <small>Boundaries, protocol, security, and alternatives</small>
-                </span>
-                <ExternalIcon />
-              </a>
-              <a
-                href={`${product.repository}/blob/main/docs/ROADMAP.md`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <span>
-                  <strong>Roadmap</strong>
-                  <small>Now, next, and later without invented dates</small>
-                </span>
-                <ExternalIcon />
-              </a>
-              <a href={product.piRpcDocs} target="_blank" rel="noreferrer">
-                <span>
-                  <strong>Official Pi RPC docs</strong>
-                  <small>The integration contract Papliba plans to use</small>
-                </span>
-                <ExternalIcon />
-              </a>
-            </div>
-          </section>
-        </article>
+            </section>
+          </article>
+        </div>
       </div>
     </>
   );

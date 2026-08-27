@@ -16,8 +16,8 @@
 ## Product status
 
 - [ ] This change does not present planned behavior as available.
-- [ ] Architecture or roadmap documents were updated if the boundary changed.
+- [ ] Product, documentation, or roadmap copy was updated if the claim changed.
 
 ## Screenshots
 
-<!-- Add before/after images for visible changes, without private workspace or session data. -->
+<!-- Add before/after images for visible changes, without private workspace data. -->

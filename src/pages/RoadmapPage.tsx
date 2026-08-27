@@ -1,54 +1,54 @@
+import { ArrowRight, Check, Circle, Wrench } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { ArrowRightIcon, CheckIcon, ExternalIcon } from '../components/Icons';
 import { product } from '../content/product';
 
 const phases = [
   {
-    status: 'NOW',
-    title: 'Make the direction concrete',
-    version: '0.8 · architecture preview',
+    label: 'RELEASED',
+    title: 'Local editing foundation',
+    detail: `v${product.version}`,
     state: 'complete',
     items: [
-      'Product story and design principles',
-      'React product and documentation site',
-      'Proposed system architecture',
-      'CI, Pages, tests, and contribution workflow',
+      'Persisted projects and workflows',
+      'Visual trigger and worker canvas',
+      'Python step folders and run logs',
+      'Parallel graph feedback and joins',
     ],
   },
   {
-    status: 'NEXT',
-    title: 'Prove the connection',
-    version: '0.9 · technical spike',
+    label: 'NEXT',
+    title: 'Durable local execution',
+    detail: 'Active development',
     state: 'next',
     items: [
-      'Minimal ASP.NET Core loopback companion',
-      'Start and stop a Pi RPC child process',
-      'Map JSONL commands and streaming events',
-      'Render one read-only session timeline',
+      'Execute real Python steps through the local runner',
+      'Capture real stdout, stderr, exit state, and duration',
+      'Make cancellation and failures explicit on the graph',
+      'Harden workspace and process permission boundaries',
     ],
   },
   {
-    status: 'THEN',
-    title: 'Build the useful loop',
-    version: '0.10 · private alpha',
+    label: 'AFTER',
+    title: 'Installable personal product',
+    detail: 'Planned',
     state: 'planned',
     items: [
-      'Prompt, abort, steering, and follow-up controls',
-      'Tool activity and file-change inspection',
-      'Workspace and session selection',
-      'Installable local packaging',
+      'Package the interface and runner together',
+      'Create a dependable first-run experience',
+      'Add workspace backup and recovery controls',
+      'Automate signed cross-platform releases',
     ],
   },
   {
-    status: 'LATER',
-    title: 'Open the surface',
-    version: 'Beyond the first usable alpha',
+    label: 'LATER',
+    title: 'Team and enterprise boundaries',
+    detail: 'Exploration',
     state: 'planned',
     items: [
-      'Extension contribution points',
-      'Reusable workflow and view presets',
-      'Accessibility and performance hardening',
-      'Cross-platform release automation',
+      'Shared workflows and role-aware permissions',
+      'Central execution with visible audit history',
+      'Managed provider policy and team credentials',
+      'Keep the personal product local-first',
     ],
   },
 ] as const;
@@ -56,52 +56,40 @@ const phases = [
 export function RoadmapPage() {
   return (
     <>
-      <section className="page-hero roadmap-hero section-grid-bg">
-        <div className="shell page-hero__inner">
-          <p className="eyebrow">PUBLIC ROADMAP</p>
-          <h1>Earn the interface one boundary at a time.</h1>
+      <section className="page-intro roadmap-intro">
+        <div className="shell page-intro__inner">
+          <p className="eyebrow eyebrow--light">PUBLIC ROADMAP</p>
+          <h1>Turn a careful editor into a dependable runner.</h1>
           <p>
-            Papliba begins with architecture, then proves the smallest real Pi connection before
-            expanding the UI. Sequence matters more than invented release dates.
+            Papliba already has a substantial local editing foundation. The next work is to make the
+            execution boundary as thoughtful as the canvas.
           </p>
         </div>
       </section>
 
-      <section className="section roadmap-section">
+      <section className="section section--light roadmap-section">
         <div className="shell">
-          <div className="roadmap-legend">
-            <span>
-              <i className="legend-dot legend-dot--complete" /> Available
-            </span>
-            <span>
-              <i className="legend-dot legend-dot--next" /> Next focus
-            </span>
-            <span>
-              <i className="legend-dot" /> Planned
-            </span>
-          </div>
           <div className="roadmap-list">
             {phases.map((phase, index) => (
-              <article className={`roadmap-phase roadmap-phase--${phase.state}`} key={phase.status}>
-                <div className="roadmap-phase__rail">
-                  <span>{String(index + 1).padStart(2, '0')}</span>
-                  <i />
-                </div>
-                <div className="roadmap-phase__body">
+              <article className={`roadmap-phase roadmap-phase--${phase.state}`} key={phase.label}>
+                <div className="roadmap-phase__index">{String(index + 1).padStart(2, '0')}</div>
+                <div className="roadmap-phase__main">
                   <div className="roadmap-phase__heading">
                     <div>
-                      <span className="phase-status">{phase.status}</span>
+                      <span>{phase.label}</span>
                       <h2>{phase.title}</h2>
                     </div>
-                    <span className="phase-version">{phase.version}</span>
+                    <small>{phase.detail}</small>
                   </div>
                   <ul>
                     {phase.items.map((item) => (
                       <li key={item}>
                         {phase.state === 'complete' ? (
-                          <CheckIcon />
+                          <Check aria-hidden="true" />
+                        ) : phase.state === 'next' ? (
+                          <Wrench aria-hidden="true" />
                         ) : (
-                          <span className="open-check" />
+                          <Circle aria-hidden="true" />
                         )}
                         {item}
                       </li>
@@ -114,50 +102,36 @@ export function RoadmapPage() {
         </div>
       </section>
 
-      <section className="section release-policy-section">
-        <div className="shell release-policy">
+      <section className="section roadmap-principle">
+        <div className="shell roadmap-principle__inner">
           <div>
-            <p className="eyebrow">RELEASE POLICY</p>
-            <h2>Versions describe evidence, not ambition.</h2>
+            <p className="eyebrow eyebrow--light">PRODUCT PRINCIPLE</p>
+            <h2>Local-first remains a boundary, not a temporary limitation.</h2>
           </div>
-          <div className="release-policy__copy">
-            <p>
-              Papliba uses Semantic Versioning and a changelog. Pre-1.0 releases may change the
-              architecture, but each release must state what is usable and what remains proposed.
-            </p>
-            <a
-              className="text-link"
-              href={`${product.repository}/blob/main/CHANGELOG.md`}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Read the changelog <ExternalIcon />
-            </a>
-          </div>
+          <p>
+            A future team product may add shared infrastructure. The personal product should still
+            keep workspace authority, files, and credentials on the user's machine by default.
+          </p>
         </div>
       </section>
 
-      <section className="section roadmap-cta-section section-grid-bg">
-        <div className="shell roadmap-cta">
+      <section className="section section--light roadmap-cta">
+        <div className="shell roadmap-cta__inner">
           <div>
-            <p className="eyebrow">THE NEXT PROOF</p>
-            <h2>Connect one local Pi session—honestly and securely.</h2>
-            <p>
-              The technical spike will validate process ownership, event mapping, and the browser
-              trust boundary before the interface grows.
-            </p>
+            <p className="eyebrow">CURRENT RELEASE</p>
+            <h2>Start with the application that exists today.</h2>
           </div>
           <div className="roadmap-cta__actions">
-            <Link className="button button--primary" to="/architecture">
-              Review the architecture <ArrowRightIcon />
+            <Link className="button button--dark" to="/docs?section=run-locally">
+              Run locally <ArrowRight aria-hidden="true" />
             </Link>
             <a
-              className="button button--ghost"
+              className="button button--outline"
               href={product.repository}
               target="_blank"
               rel="noreferrer"
             >
-              Watch on GitHub <ExternalIcon />
+              Follow development
             </a>
           </div>
         </div>

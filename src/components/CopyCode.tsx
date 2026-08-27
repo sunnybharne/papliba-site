@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { CheckIcon, CopyIcon } from './Icons';
+import { Check, Copy } from 'lucide-react';
 
 interface CopyCodeProps {
   children: string;
@@ -25,7 +25,7 @@ export function CopyCode({ children, label = 'Terminal' }: CopyCodeProps) {
       <div className="code-block__bar">
         <span>{label}</span>
         <button type="button" onClick={() => void copy()} aria-label="Copy code">
-          {copied ? <CheckIcon /> : <CopyIcon />}
+          {copied ? <Check aria-hidden="true" /> : <Copy aria-hidden="true" />}
           {copied ? 'Copied' : 'Copy'}
         </button>
       </div>

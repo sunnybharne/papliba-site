@@ -1,205 +1,230 @@
+import {
+  ArrowRight,
+  Blocks,
+  Braces,
+  Database,
+  GitBranch,
+  Laptop,
+  Play,
+  ShieldCheck,
+  Sparkles,
+} from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { ConceptCanvas } from '../components/ConceptCanvas';
-import { ArrowRightIcon, CheckIcon, ExternalIcon } from '../components/Icons';
-import { SectionHeading } from '../components/SectionHeading';
 import { product } from '../content/product';
 
-const problems = [
+const capabilities = [
   {
-    number: '01',
-    title: 'See the work',
-    copy: 'Follow tool calls, file changes, and agent decisions in one calm activity stream.',
+    icon: GitBranch,
+    title: 'Shape the workflow',
+    copy: 'Place triggers and workers on a visual canvas, connect the steps, and keep the graph readable as it grows.',
   },
   {
-    number: '02',
-    title: 'Keep the checkpoints',
-    copy: 'Put review and approval moments exactly where consequential actions happen.',
+    icon: Braces,
+    title: 'Work with real files',
+    copy: 'Each Python step owns a local folder with a main.py entry point, supporting files, and recoverable run history.',
   },
   {
-    number: '03',
-    title: 'Shape your workflow',
-    copy: 'Grow from a focused Pi interface into a workspace your community can extend.',
+    icon: Sparkles,
+    title: 'Bring an agent into the step',
+    copy: 'Use the local Codex workflow to draft Python changes, review them, and apply them without handing over the workspace.',
   },
 ] as const;
 
-const principles = [
-  {
-    label: 'LOCAL BY DEFAULT',
-    title: 'Authority stays close',
-    copy: 'The proposed companion runs on your machine. Workspace access and process control do not move to a hosted Papliba service.',
-  },
-  {
-    label: 'TRANSPARENT',
-    title: 'Nothing important is hidden',
-    copy: 'Commands, tool activity, edits, and errors should be inspectable—not reduced to a mysterious loading spinner.',
-  },
-  {
-    label: 'PI, NOT A REIMPLEMENTATION',
-    title: 'One agent, another surface',
-    copy: 'Papliba plans to use Pi RPC so Pi remains responsible for the agent loop, tools, sessions, and models.',
-  },
+const releaseFacts = [
+  'Persisted projects and workflows',
+  'Multi-node selection and grouped movement',
+  'Parallel branches and downstream joins',
+  'Revisioned SQLite workspace storage',
 ] as const;
 
 export function HomePage() {
   return (
     <>
-      <section className="hero section-grid-bg">
-        <div className="shell hero__inner">
-          <div className="hero__copy">
-            <div className="status-kicker">
-              <span className="status-kicker__dot" />
-              Open source · {product.phase}
-            </div>
-            <h1>
-              Your Pi agent,
-              <span>with a window.</span>
-            </h1>
-            <p className="hero__lead">
-              Papliba is a planned local-first control surface for Pi—designed to make agent
-              activity visible, reviewable, and easier to shape.
+      <section className="product-hero">
+        <img
+          className="product-hero__image"
+          src="/papliba-workflow-dark.png"
+          alt="Papliba workflow canvas with one trigger connected to two Python steps"
+        />
+        <div className="product-hero__scrim" />
+        <div className="shell product-hero__inner">
+          <div className="product-hero__copy">
+            <p className="eyebrow eyebrow--light">
+              <span className="live-dot" /> Open source · v{product.version} local alpha
             </p>
-            <div className="hero__actions">
-              <Link className="button button--primary" to="/architecture">
-                Explore the architecture <ArrowRightIcon />
+            <h1>Papliba</h1>
+            <p className="product-hero__statement">A local-first visual workflow builder.</p>
+            <p className="product-hero__lead">
+              Connect triggers, code, and agent-assisted steps in a workspace that stays close to
+              your files and keeps every handoff visible.
+            </p>
+            <div className="hero-actions">
+              <Link className="button button--accent" to="/product">
+                Explore the product <ArrowRight aria-hidden="true" />
               </Link>
-              <Link className="button button--ghost" to="/docs">
-                Read the docs
+              <Link className="button button--quiet" to="/docs?section=run-locally">
+                Run locally
               </Link>
             </div>
-            <p className="hero__honesty">
-              <span>v{product.version}</span> Product direction and system design—not a working
-              agent UI yet.
-            </p>
-          </div>
-          <div className="hero__visual">
-            <div className="hero-orbit hero-orbit--one" />
-            <div className="hero-orbit hero-orbit--two" />
-            <ConceptCanvas />
           </div>
         </div>
       </section>
 
-      <section className="section problem-section">
+      <section className="proof-strip" aria-label="Papliba technology summary">
+        <div className="shell proof-strip__inner">
+          <span>
+            <Laptop aria-hidden="true" /> Local-first
+          </span>
+          <span>
+            <Blocks aria-hidden="true" /> Visual canvas
+          </span>
+          <span>
+            <Database aria-hidden="true" /> SQLite persistence
+          </span>
+          <span>
+            <ShieldCheck aria-hidden="true" /> Loopback runner
+          </span>
+        </div>
+      </section>
+
+      <section className="section section--light">
         <div className="shell">
-          <SectionHeading
-            eyebrow="THE PRODUCT IDEA"
-            title="Agents move fast. Understanding should keep up."
-            copy="Papliba is being designed around the moments where a terminal-only workflow becomes hard to scan, explain, or control."
-          />
-          <div className="problem-grid">
-            {problems.map((problem) => (
-              <article className="problem-card" key={problem.number}>
-                <span className="card-number">{problem.number}</span>
-                <div className="card-glyph" aria-hidden="true">
-                  {problem.number === '01' ? '◎' : problem.number === '02' ? '◇' : '⌘'}
+          <div className="section-heading section-heading--split">
+            <div>
+              <p className="eyebrow">THE PRODUCT</p>
+              <h2>Automation you can see and shape.</h2>
+            </div>
+            <p>
+              Papliba turns a loose collection of scripts and agent tasks into a deliberate graph:
+              one clear trigger, small focused workers, and visible outputs.
+            </p>
+          </div>
+          <div className="capability-grid">
+            {capabilities.map(({ icon: Icon, title, copy }, index) => (
+              <article className="capability" key={title}>
+                <div className="capability__topline">
+                  <Icon aria-hidden="true" />
+                  <span>0{index + 1}</span>
                 </div>
-                <h3>{problem.title}</h3>
-                <p>{problem.copy}</p>
+                <h3>{title}</h3>
+                <p>{copy}</p>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="section principles-section">
-        <div className="shell principles-layout">
-          <div className="principles-intro">
-            <p className="eyebrow">DESIGN PRINCIPLES</p>
-            <h2>A UI should add clarity, not take control away.</h2>
+      <section className="section workflow-band">
+        <div className="shell workflow-layout">
+          <div className="workflow-copy">
+            <p className="eyebrow eyebrow--light">A READABLE GRAPH</p>
+            <h2>Trigger. Branch. Join. Review.</h2>
             <p>
-              These are constraints for the product, not finished features. They will guide every
-              implementation decision.
+              Start from a manual trigger, run sibling branches together, and hold downstream work
+              until every reachable parent has finished. The canvas keeps execution structure in
+              view.
             </p>
-            <Link className="text-link" to="/architecture">
-              See the trust boundaries <ArrowRightIcon />
+            <Link className="text-link text-link--light" to="/product">
+              See product capabilities <ArrowRight aria-hidden="true" />
             </Link>
           </div>
-          <div className="principle-list">
-            {principles.map((principle) => (
-              <article className="principle-item" key={principle.label}>
-                <div className="principle-check">
-                  <CheckIcon />
-                </div>
-                <div>
-                  <span>{principle.label}</span>
-                  <h3>{principle.title}</h3>
-                  <p>{principle.copy}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section status-section">
-        <div className="shell">
-          <div className="status-panel">
-            <div className="status-panel__copy">
-              <span className="status-panel__tag">CURRENT RELEASE · v{product.version}</span>
-              <h2>The foundation is public. The application comes next.</h2>
-              <p>
-                This first preview establishes the product story, proposed architecture,
-                contribution workflow, and delivery pipeline. The roadmap separates what exists
-                today from what we intend to build.
-              </p>
-              <div className="status-panel__actions">
-                <Link className="button button--light" to="/roadmap">
-                  View the roadmap <ArrowRightIcon />
-                </Link>
-                <a
-                  className="button button--dark-outline"
-                  href={product.repository}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Follow on GitHub <ExternalIcon />
-                </a>
-              </div>
+          <div className="workflow-demo" aria-label="Example Papliba workflow">
+            <div className="flow-node flow-node--trigger">
+              <span>MANUAL TRIGGER</span>
+              <strong>Customer arrives</strong>
+              <Play aria-hidden="true" />
             </div>
-            <div className="release-card">
-              <div className="release-card__header">
-                <span>IN THIS PREVIEW</span>
-                <span className="release-state">PUBLISHED</span>
+            <div className="flow-lines" aria-hidden="true">
+              <i />
+              <i />
+            </div>
+            <div className="flow-stack">
+              <div className="flow-node">
+                <span>PYTHON</span>
+                <strong>Validate account</strong>
+                <small>Ready</small>
               </div>
-              <ul>
-                <li>
-                  <CheckIcon /> Product direction
-                </li>
-                <li>
-                  <CheckIcon /> Proposed architecture
-                </li>
-                <li>
-                  <CheckIcon /> Contributor documentation
-                </li>
-                <li>
-                  <CheckIcon /> Automated quality gates
-                </li>
-              </ul>
-              <p>Agent connection and session UI are planned, not included.</p>
+              <div className="flow-node">
+                <span>OPENAI</span>
+                <strong>Draft welcome note</strong>
+                <small>Ready</small>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="section closing-section section-grid-bg">
-        <div className="shell closing-section__inner">
-          <span className="eyebrow">BUILD IN THE OPEN</span>
-          <h2>Papliba is a direction you can inspect from day one.</h2>
-          <p>
-            Read the decisions, challenge the assumptions, or help turn the architecture into a
-            useful Pi interface.
-          </p>
-          <div className="hero__actions">
+      <section className="section section--light">
+        <div className="shell local-layout">
+          <div>
+            <p className="eyebrow">LOCAL BY DEFAULT</p>
+            <h2>Your workspace remains the workspace.</h2>
+            <p className="section-lead">
+              Papliba runs a browser interface and an ASP.NET Core companion on your machine. Files,
+              workflow state, and tool access do not require a hosted Papliba account.
+            </p>
+          </div>
+          <div className="runtime-list">
+            <div>
+              <span>01</span>
+              <strong>Next.js interface</strong>
+              <p>The canvas and editing experience at a loopback address.</p>
+            </div>
+            <div>
+              <span>02</span>
+              <strong>Local .NET runner</strong>
+              <p>Workspace persistence, file operations, and process boundaries.</p>
+            </div>
+            <div>
+              <span>03</span>
+              <strong>SQLite workspace</strong>
+              <p>Revisioned projects and workflows stored on the same machine.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section release-band">
+        <div className="shell release-layout">
+          <div className="release-mark">
+            <span>RELEASED</span>
+            <strong>v{product.version}</strong>
+            <small>Local alpha</small>
+          </div>
+          <div className="release-copy">
+            <p className="eyebrow eyebrow--light">WHAT EXISTS TODAY</p>
+            <h2>A real editing foundation, with honest limits.</h2>
+            <p>
+              Workflow editing, local persistence, file-backed Python steps, and execution feedback
+              are implemented. Runtime execution is still a frontend demonstration while the local
+              runner is hardened.
+            </p>
+            <ul>
+              {releaseFacts.map((fact) => (
+                <li key={fact}>{fact}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section className="section final-cta section--light">
+        <div className="shell final-cta__inner">
+          <div>
+            <p className="eyebrow">BUILD IN THE OPEN</p>
+            <h2>Inspect the product, then run it locally.</h2>
+          </div>
+          <div className="final-cta__actions">
             <a
-              className="button button--primary"
+              className="button button--dark"
               href={product.repository}
               target="_blank"
               rel="noreferrer"
             >
-              Explore the repository <ExternalIcon />
+              View source <ArrowRight aria-hidden="true" />
             </a>
-            <Link className="button button--ghost" to="/docs">
-              Start with the docs
+            <Link className="button button--outline" to="/docs?section=run-locally">
+              Local setup
             </Link>
           </div>
         </div>
