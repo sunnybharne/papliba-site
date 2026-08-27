@@ -1,6 +1,6 @@
 # Papliba Site Azure Deployment Plan
 
-Status: In progress
+Status: Deployed
 
 ## Objective
 
@@ -52,3 +52,13 @@ No DNS cutover is required. The existing apex A record and `www` CNAME continue 
 - GitHub Actions deploys `papliba-site/main` successfully.
 - `https://papliba.com/` and `https://www.papliba.com/` return HTTP 200.
 - Azure reports both custom domains as ready.
+
+## Deployment Record
+
+- Initial separated-site commit: `bd34fb0`
+- Website CI run: `33107159063` (successful)
+- Azure deployment run: `33107158399` (successful)
+- Application restore commit: `5360d20`
+- Application CI run: `33107755142` (successful)
+- Azure source repository: `https://github.com/sunnybharne/papliba-site`
+- Verified: 2026-08-27
