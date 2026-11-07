@@ -1,31 +1,13 @@
-# Papliba Site
+# papliba-site — retired
 
-Public product and documentation website for [Papliba](https://papliba.com/), a local-first visual workflow builder.
+This repository's workflow product website belongs to Papliba's retired product.
+The obsolete source and build configuration have been removed from the default branch.
+This repository is archived and its GitHub Actions are disabled. Previous commits remain available for historical reference.
 
-The application source lives in [sunnybharne/papliba](https://github.com/sunnybharne/papliba). This repository contains only the public website and its Azure Static Web Apps deployment workflow.
+Papliba is now the Pi-powered desktop chat application:
 
-## Local development
+- Current desktop source and builds: https://github.com/sunnybharne/papliba-mac
+- Current product and downloads: https://papliba.com
+- Current product-site repository: https://github.com/sunnybharne/papliba
 
-Requirements:
-
-- Node.js 24 LTS
-- npm 11 or newer
-
-```bash
-npm ci
-npm run dev
-```
-
-## Validation
-
-```bash
-npm run validate
-```
-
-## Hosting
-
-The production build is deployed to Azure Static Web Apps from `main` and serves `papliba.com` and `www.papliba.com`.
-
-## License
-
-Licensed under the [Apache License 2.0](LICENSE).
+Do not build, install, or deploy the retired product.
